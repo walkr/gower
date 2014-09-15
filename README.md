@@ -25,12 +25,17 @@ func sayHi(c *gower.Context){
     c.WriteTemplate("say-hi.html", data)
 }
 
+// Display some server stats
+func serverStats(c *gower.Context){
+	c.WriteJson(gower.ServerStat)
+}
+
 func main(){
 
     // Register the routes
     gower.Get("/hello", hello)
     gower.Get("/say-hi/([a-zA-Z]+)", sayHi)
-
+	 gower.Get("/stats", serverStats)
     // Start the server
     gower.Start()
 
